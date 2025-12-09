@@ -20,6 +20,8 @@ const sidebars = {
       },
       items: [
         'module-1-ros2-nervous-system/ros2-as-nervous-system',
+        'module-1-ros2-nervous-system/python-agents-rclpy',
+        'module-1-ros2-nervous-system/urdf-humanoid-robots',
       ],
       collapsed: false,
     },
