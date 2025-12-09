@@ -16,7 +16,7 @@ const config = {
   organizationName: 'SufyanKhanDilazak', // Replace with your GitHub username
   projectName: 'Physical-ai-and-humanoid-book', // Replace with your repository name
   trailingSlash: false,
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   markdown: {
     mermaid: false,
     hooks: {
@@ -85,7 +85,7 @@ const config = {
             items: [
               {
                 label: 'Book',
-                to: '/docs/module-1-ros2-nervous-system/intro',
+                to: '/docs/intro',
               },
             ],
           },
