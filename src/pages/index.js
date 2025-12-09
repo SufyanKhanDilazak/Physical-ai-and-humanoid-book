@@ -14,7 +14,7 @@ function HomepageHeader() {
           <div className="hero-button-container">
             <Link
               className="button button--secondary button--lg hero-button"
-              to="/docs/module-1-ros2-nervous-system/intro">
+              to="/docs/intro">
               Start Learning - 5min ⏱️
             </Link>
           </div>
