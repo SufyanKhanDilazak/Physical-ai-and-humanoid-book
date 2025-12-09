@@ -18,7 +18,14 @@ const config = {
   projectName: 'Physical-ai-and-humanoid-book', // Replace with your repository name
   trailingSlash: false,
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    mermaid: false,
+    mdx1Compat: {
+      'remark-admonitions': {
+        onBrokenMarkdownLinks: 'warn',
+      },
+    },
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
