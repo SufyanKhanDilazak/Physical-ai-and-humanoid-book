@@ -1,5 +1,4 @@
 import {themes as prismThemes} from 'prism-react-renderer';
-import path from 'path';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -18,9 +17,11 @@ const config = {
   projectName: 'Physical-ai-and-humanoid-book', // Replace with your repository name
   trailingSlash: false,
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
   markdown: {
     mermaid: false,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
 
   // Even if you don't use internationalization, you can use this field to set
@@ -116,7 +117,9 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
-        additionalLanguages: ['python', 'bash', 'xml', 'urdf'],
+        // Use valid Prism component names only.
+        // 'markup' handles XML/URDF-style XML highlighting.
+        additionalLanguages: ['python', 'bash', 'markup'],
       },
       colorMode: {
         defaultMode: 'light',
