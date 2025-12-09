@@ -6,16 +6,18 @@ import Layout from '@theme/Layout';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className="hero hero--primary">
+    <header className="hero hero--primary hero--centered">
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/module-1-ros2-nervous-system/intro">
-            Start Learning - 5min ⏱️
-          </Link>
+        <div className="hero-content">
+          <h1 className="hero__title">{siteConfig.title}</h1>
+          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <div className="hero-button-container">
+            <Link
+              className="button button--secondary button--lg hero-button"
+              to="/docs/module-1-ros2-nervous-system/intro">
+              Start Learning - 5min ⏱️
+            </Link>
+          </div>
         </div>
       </div>
     </header>
