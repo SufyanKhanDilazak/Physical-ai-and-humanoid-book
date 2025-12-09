@@ -1,0 +1,86 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #2563eb;
+  --ifm-color-primary-dark: #1d4ed8;
+  --ifm-color-primary-darker: #1e40af;
+  --ifm-color-primary-darkest: #1e3a8a;
+  --ifm-color-primary-light: #3b82f6;
+  --ifm-color-primary-lighter: #60a5fa;
+  --ifm-color-primary-lightest: #93c5fd;
+  --ifm-code-font-size: 95%;
+}
+
+/* Custom styles for robotics content */
+.robotics-diagram {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #f8f9fa;
+}
+
+.ros-node {
+  display: inline-block;
+  background-color: #e3f2fd;
+  border: 1px solid #2196f3;
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin: 0 4px;
+  font-family: monospace;
+}
+
+.ros-topic {
+  display: inline-block;
+  background-color: #e8f5e9;
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin: 0 4px;
+  font-family: monospace;
+}
+
+/* Custom admonitions for robotics content */
+.ros-admonition {
+  border-left: 4px solid #2563eb;
+  background-color: #eff6ff;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] {
+  --ifm-color-primary: #60a5fa;
+  --ifm-color-primary-dark: #3b82f6;
+  --ifm-color-primary-darker: #2563eb;
+  --ifm-color-primary-darkest: #1d4ed8;
+  --ifm-color-primary-light: #93c5fd;
+  --ifm-color-primary-lighter: #bfdbfe;
+  --ifm-color-primary-lightest: #dbeafe;
+}
+
+[data-theme='dark'] .robotics-diagram {
+  background-color: #2d3748;
+  border-color: #4a5568;
+}
+
+[data-theme='dark'] .ros-node {
+  background-color: #2c5282;
+  border-color: #4299e1;
+}
+
+[data-theme='dark'] .ros-topic {
+  background-color: #2d5a40;
+  border-color: #38a169;
+}
+
+[data-theme='dark'] .ros-admonition {
+  background-color: #1a365d;
+  border-left-color: #63b3ed;
+}

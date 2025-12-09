@@ -1,0 +1,297 @@
+openapi: 3.0.0
+info:
+  title: Physical AI & Humanoid Robotics Book RAG API
+  description: API for retrieval-augmented generation chatbot integrated with the Physical AI & Humanoid Robotics book
+  version: 1.0.0
+servers:
+  - url: https://api.physical-ai-book.com/v1
+    description: Production server
+  - url: https://staging-api.physical-ai-book.com/v1
+    description: Staging server
+
+paths:
+  /search:
+    post:
+      summary: Semantic search in book content
+      description: Perform semantic search across the Physical AI & Humanoid Robotics book content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: Search query in natural language
+                  example: "How do I create a ROS 2 publisher node?"
+                module_filter:
+                  type: string
+                  description: Optional filter to search within specific module
+                  example: "module-1-ros2"
+                top_k:
+                  type: integer
+                  description: Number of results to return (default 5, max 10)
+                  default: 5
+                  minimum: 1
+                  maximum: 10
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query:
+                    type: string
+                    description: Original search query
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SearchResult'
+                  query_id:
+                    type: string
+                    description: Unique identifier for the search query
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /chat:
+    post:
+      summary: Chat with the RAG-enhanced assistant
+      description: Engage in conversation with the AI assistant that has access to book content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  description: User message
+                  example: "Explain how to set up Isaac Sim for perception tasks"
+                session_id:
+                  type: string
+                  description: Session identifier for conversation continuity
+                module_filter:
+                  type: string
+                  description: Optional filter to limit responses to specific module
+                  example: "module-3-ai-brain"
+      responses:
+        '200':
+          description: Chat response with sources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    description: AI-generated response
+                  sources:
+                    type: array
+                    description: List of content sources used to generate response
+                    items:
+                      $ref: '#/components/schemas/ContentReference'
+                  session_id:
+                    type: string
+                    description: Session identifier
+                  confidence:
+                    type: number
+                    description: Confidence score of the response (0-1)
+                    format: float
+                    minimum: 0
+                    maximum: 1
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /content/{slug}:
+    get:
+      summary: Get specific content by slug
+      description: Retrieve a specific piece of book content by its slug identifier
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: URL-friendly identifier for the content
+          schema:
+            type: string
+            example: "module-1-ros2-nodes-topics-services"
+      responses:
+        '200':
+          description: Content retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookContent'
+        '404':
+          description: Content not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    SearchResult:
+      type: object
+      properties:
+        content_id:
+          type: string
+          description: Unique identifier for the content
+        title:
+          type: string
+          description: Title of the content section
+        slug:
+          type: string
+          description: URL-friendly identifier
+        module:
+          type: string
+          description: Module identifier
+        chapter:
+          type: string
+          description: Chapter identifier
+        text:
+          type: string
+          description: The matching content text
+        score:
+          type: number
+          description: Relevance score (0-1)
+          format: float
+          minimum: 0
+          maximum: 1
+        metadata:
+          type: object
+          description: Additional content metadata
+          properties:
+            author:
+              type: string
+            tags:
+              type: array
+              items:
+                type: string
+            learning_outcomes:
+              type: array
+              items:
+                type: string
+
+    ContentReference:
+      type: object
+      properties:
+        content_id:
+          type: string
+          description: Unique identifier for the content
+        title:
+          type: string
+          description: Title of the content section
+        slug:
+          type: string
+          description: URL-friendly identifier
+        url:
+          type: string
+          description: Full URL to the content in the book
+        relevance_score:
+          type: number
+          description: Relevance score (0-1)
+          format: float
+          minimum: 0
+          maximum: 1
+
+    BookContent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the content
+        title:
+          type: string
+          description: Title of the content section
+        slug:
+          type: string
+          description: URL-friendly identifier
+        module:
+          type: string
+          description: Module identifier
+        chapter:
+          type: string
+          description: Chapter identifier
+        content:
+          type: string
+          description: Markdown content
+        metadata:
+          type: object
+          description: Additional content metadata
+          properties:
+            author:
+              type: string
+            reviewers:
+              type: array
+              items:
+                type: string
+            tags:
+              type: array
+              items:
+                type: string
+            learning_outcomes:
+              type: array
+              items:
+                type: string
+        version:
+          type: string
+          description: Content version
+        created_at:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp
+        status:
+          type: string
+          description: Content status
+          enum: [draft, review, published, archived]
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+        details:
+          type: object
+          description: Additional error details

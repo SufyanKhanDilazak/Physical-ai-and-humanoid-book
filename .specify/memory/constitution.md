@@ -1,55 +1,57 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+Version change: N/A (initial version) → 1.0.0
+Added sections: All principles and governance sections for AI-Native Robotics project
+Removed sections: None (this is the initial version)
+Templates requiring updates: ✅ Updated
+Follow-up TODOs: None
+-->
+
+# AI-Native Robotics Book + Embedded RAG Chatbot Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. High Accuracy and Verified Sources (NON-NEGOTIABLE)
+All content must use verified and primary robotics & AI sources. Information accuracy is paramount, with all claims traceable to credible academic or industry sources. Code examples must be fully tested and validated in simulation environments.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Academic Writing Standards
+Content must follow clear academic writing standards appropriate for CS students at Grade 10–12 level. All diagrams, ROS graphs, examples, and code blocks must be clearly explained and accessible. APA citation style is mandatory for all references.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Full Reproducibility
+All code, simulations, and deployments must be fully reproducible. Every tutorial and example must include step-by-step instructions with specific commands and expected outputs. Dependencies and environment configurations must be documented and versioned.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Rigorous Citation and Academic Integrity
+All content must follow rigorous citation standards: APA style, minimum 15 sources per major section (with 50% peer-reviewed), and zero tolerance for plagiarism. All claims must be supported by evidence from cited sources.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Docusaurus Book Architecture
+The book must be built with Spec-Kit Plus + Claude Code, structured around Physical AI & Humanoid Robotics curriculum. Include interactive diagrams, ROS graphs, code examples, and step-by-step tutorials with clear learning objectives.
 
-### [PRINCIPLE_6_NAME]
+### VI. RAG Chatbot Excellence
+The embedded RAG chatbot must use only book content (and optionally user-selected text) as its knowledge base. The stack (FastAPI, Neon Postgres, Qdrant) must be properly integrated with chunking, retrieval, grounding, and Agent Tools. The chatbot must be embedded directly inside the Docusaurus UI.
 
+## Additional Constraints
 
-[PRINCIPLE__DESCRIPTION]
+Technology stack: Docusaurus for book deployment to GitHub Pages, OpenAI Agents/ChatKit, FastAPI backend, Neon Postgres, and Qdrant vector DB for the RAG chatbot. All dependencies must be properly documented and maintained. Code examples must be compatible with ROS 2, Isaac Sim, and Gazebo simulation environments.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Module-Specific Requirements
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Module 1 — The Robotic Nervous System (ROS 2)
+Implementation must include Nodes, Topics, Services, DDS basics, rclpy bridging for Python agents, and URDF creation for humanoids. Outcome: Working ROS 2 package + complete humanoid URDF.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### Module 2 — The Digital Twin (Gazebo & Unity)
+Implementation must cover physics simulation (contacts, gravity, collisions), Unity for HRI and visual realism, and simulated sensors (LiDAR, Depth, IMU). Outcome: Humanoid robot simulation + sensor data publishing.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Module 3 — The AI-Robot Brain (NVIDIA Isaac)
+Implementation must include Isaac Sim for photorealistic environments + synthetic data, Isaac ROS for VSLAM/navigation, and Nav2 for bipedal path planning. Outcome: ROS–Isaac bridge + working VSLAM + Nav2 demo.
+
+### Module 4 — Vision-Language-Action (VLA)
+Implementation must include Whisper for voice → commands, LLM plans → ROS 2 action sequences, and end-to-end perception → planning → manipulation pipeline. Outcome: Humanoid robot completing a natural-language mission.
+
+## Capstone Requirements
+
+The capstone project must integrate all modules: Robot receives a voice command → plans steps → navigates → identifies object → manipulates it in simulation. All components must work seamlessly together in the simulation environment.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other practices and must be followed by all team members. Amendments require documentation of the change, approval from project maintainers, and a migration plan if needed. All pull requests and code reviews must verify compliance with these principles. The project must maintain academic integrity and technical excellence throughout all development phases.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Version: 1.0.0 | Ratified: 2025-12-09 | Last Amended: 2025-12-09

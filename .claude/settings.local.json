@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch --all --prune)",
+      "Bash(pwsh -File .specify/scripts/powershell/create-new-feature.ps1 -Json -ShortName \"ros2-nervous-system\" -Number 1 \"Module 1 — The Robotic Nervous System (ROS 2)\n\nTarget audience:\nRobotics students/engineers learning foundational ROS 2 for humanoid control.\n\nFocus:\n- ROS 2 middleware (Nodes, Topics, Services, Actions)\n- rclpy for Python-to-robot control\n- URDF basics for humanoid robot structure\n\nDeliverable:\nA 2–3 chapter Module 1 section for the Physical AI & Humanoid Robotics book.\n\nChapters:\n1. Chapter 1 — ROS 2 as the Robotic Nervous System  \n   - Middleware concepts, DDS, QoS  \n   - Nodes/Topics/Services and message flow  \n\n2. Chapter 2 — Python Agents with rclpy  \n   - Writing ROS 2 nodes in Python  \n   - Publishing, subscribing, simple control loop  \n   - How rclpy connects AI agents to robot controllers  \n\n3. Chapter 3 — URDF for Humanoid Robots  \n   - Links, joints, sensors, transforms  \n   - Minimal humanoid URDF model  \n   - How URDF integrates with ROS 2 tools  \n\nSuccess criteria:\n- Accurate, reproducible explanations + code examples  \n- Readers can: build ROS 2 nodes, use rclpy, and create a valid URDF\")",
+      "Bash(mkdir -p specs/001-ros2-nervous-system)",
+      "Bash(.specify/scripts/powershell/check-prerequisites.ps1 -Json)",
+      "Bash(mkdir -p history/adr)",
+      "mcp__context7__resolve-library-id",
+      "Bash(npm install)",
+      "Bash(npx create-docusaurus@latest . classic --typescript=false --package-manager=npm)",
+      "Bash(ls -la src/*/)",
+      "Bash(git init)",
+      "Bash(git add README.md)",
+      "Bash(git commit -m \"first commit\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
